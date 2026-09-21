@@ -33,6 +33,19 @@ class RepositoryClientes {
     }
 
     async Delete(id) {
-        const clienteDelete = await 
+        const clienteDelete = await cliente.findByPk(id)
+
+        if (!clienteDelete) {
+            throw new Error("Quem é esse neguin?")
+        }
+
+        await clienteDelete.detroy()
+        return clienteDelete
+    }
+
+    async findByEmail(email) {
+        return usuario.findOne({ where: { email } })
     }
 }
+
+export default new RepositoryClientes()
