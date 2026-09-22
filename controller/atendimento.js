@@ -29,9 +29,9 @@ class ControllerAtendimento {
 
     async Criar(req, res) {
         try {
-            const { nome, email, senha } = req.body
+            const { dia, hora, valor, concluido } = req.body
 
-            await ServiceAtendimento.Criar(nome, email, senha)
+            await ServiceAtendimento.Criar(dia, hora, valor, concluido)
 
             res.status(201).send({ mensagem: "Cadastrado com sucesso" })
         } catch (error) {
@@ -43,12 +43,12 @@ class ControllerAtendimento {
 
     async Alterar(req, res) {
         try {
-            const { nome, email, senha } = req.body
+            const { dia, hora, valor, concluido } = req.body
             const id = req.params.id
 
-            await ServiceAtendimento.Alterar(id, nome, email, senha)
+            await ServiceAtendimento.Alterar(id, dia, hora, valor, concluido)
 
-            res.status(201).send({ mensagem: "Cadastrado com sucesso" })
+            res.status(200).send({ mensagem: "Alterado com sucesso" })
         } catch (error) {
             res.status(500).send({
                 mensagem: error.message
@@ -63,23 +63,6 @@ class ControllerAtendimento {
             await ServiceAtendimento.Deletar(identificador)
 
             res.status(204).send({ mensagem: "Deletado" })
-        } catch (error) {
-
-            res.status(500).send({
-                mensagem: error.message
-            })
-        }
-    }
-
-    async Login(req, res) {
-        try {
-            const { nome, email, senha } = req.body
-
-            const token = await ServiceAtendimento.Login(nome, email, senha)
-
-            res.status(200).send({
-                token
-            })
         } catch (error) {
 
             res.status(500).send({
