@@ -39,7 +39,7 @@ class RepositoryClientes {
             throw new Error("Quem é esse neguin?")
         }
 
-        await clienteDelete.detroy()
+        await clienteDelete.destroy()
         return clienteDelete
     }
 
