@@ -24,4 +24,4 @@ class Atendimento {
     }
 }
 
-export default new Atendimento
+export default new Atendimento().model

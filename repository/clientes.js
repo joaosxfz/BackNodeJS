@@ -13,7 +13,7 @@ class RepositoryClientes {
     }
 
     async Create(nome, email, senha) {
-        const clienteCriar = await cliente.Create({ nome, email, senha })
+        const clienteCriar = await cliente.create({ nome, email, senha })
         return clienteCriar
     }
 
@@ -41,6 +41,10 @@ class RepositoryClientes {
 
         await clienteDelete.detroy()
         return clienteDelete
+    }
+
+    async findByEmail(email){
+        return await cliente.findOne({ where: { email }})
     }
 }
 

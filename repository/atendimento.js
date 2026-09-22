@@ -13,7 +13,7 @@ class RepositoryAtendimento {
     }
 
     async Create(dia, hora, valor, concluido) {
-        const atendimentoCriar = await Atendimento.Create({ dia, hora, valor, concluido })
+        const atendimentoCriar = await Atendimento.create({ dia, hora, valor, concluido })
         return atendimentoCriar
     }
 
