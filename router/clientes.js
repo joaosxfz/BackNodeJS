@@ -1,13 +1,13 @@
 import express from "express"
-import ControllerUsuario from "../controller/usuario.js"
+import ControllerCliente from "../controller/clientes.js"
 import authMiddleware from "../middleware/auth.js"
 const router = express.Router()
 
-router.post("/login", ControllerUsuario.Login)
-router.get("/buscar", authMiddleware, ControllerUsuario.Buscar)
-router.get("/detalhe/:id", ControllerUsuario.Detalhe)
-router.post("/criar", ControllerUsuario.Criar)
-router.put("/alterar/:id", ControllerUsuario.Alterar)
-router.delete("/deletar/:id", ControllerUsuario.Deletar)
+router.post("/login", ControllerCliente.Login)
+router.get("/buscar", authMiddleware, ControllerCliente.Buscar)
+router.get("/detalhe/:id", ControllerCliente.Detalhe)
+router.post("/criar", ControllerCliente.Criar)
+router.put("/alterar/:id", ControllerCliente.Alterar)
+router.delete("/deletar/:id", ControllerCliente.Deletar)
 
 export default router

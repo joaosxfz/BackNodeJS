@@ -1,13 +1,13 @@
-import RepositoryUsuario from '../repository/usuario.js'
+import RepositoryCliente from '../repository/clientes.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 const segredo = 'mimos4'
 
-class ServiceUsuario {
+class ServiceCliente {
 
     async Buscar() {
-        return RepositoryUsuario.find()
+        return RepositoryCliente.find()
     }
 
     async Detalhe(id) {
@@ -15,37 +15,37 @@ class ServiceUsuario {
             throw new Error("Favor informar o ID")
         }
 
-        const usuario = await RepositoryUsuario.findById(id)
+        const cliente = await RepositoryCliente.findById(id)
 
-        if (!usuario) {
-            throw new Error(`ID ${id} do usuario não encontrado`)
+        if (!cliente) {
+            throw new Error(`ID ${id} do cliente não encontrado`)
         }
 
-        return usuario
+        return cliente
     }
 
-    async Criar(email, senha) {
-        if (!email || !senha) {
+    async Criar(nome, email, senha) {
+        if (!nome || !email || !senha) {
             throw new Error("Favor informar todos os dados")
         }
 
         const senhaCripto = await bcrypt.hash(senha, 12)
 
-        const usuario = await RepositoryUsuario.Create(email, senhaCripto)
+        const cliente = await RepositoryCliente.Create(nome, email, senhaCripto)
 
-        return usuario
+        return cliente
     }
 
-    async Alterar(id, email, senha) {
-        if (!id || !email || !senha) {
+    async Alterar(id, nome, email, senha) {
+        if (!id || !nome || !email || !senha) {
             throw new Error("Favor informar os dados");
         }
 
         const senhaCripto = await bcrypt.hash(senha, 12)
 
-        const usuarioAlterado = await RepositoryUsuario.Update(id, email, senhaCripto)
+        const clienteAlterado = await RepositoryCliente.Update(id, nome, email, senhaCripto)
 
-        return usuarioAlterado
+        return clienteAlterado
     }
 
     async Deletar(id) {
@@ -53,9 +53,9 @@ class ServiceUsuario {
             throw new Error("Favor informar o ID")
         }
 
-        const usuario = await RepositoryUsuario.Delete(id)
+        const cliente = await RepositoryCliente.Delete(id)
 
-        return usuario
+        return cliente
     }
 
     async Login(email, senha) {
@@ -63,24 +63,24 @@ class ServiceUsuario {
             throw new Error("Email ou senha inválido")
         }
 
-        const usuario = await RepositoryUsuario.findByEmail(email)
+        const cliente = await RepositoryCliente.findByEmail(email)
 
-        if (!usuario) {
+        if (!cliente) {
             throw new Error("Email ou senha inválido")
         }
 
         if (
-            !(await bcrypt.compare(String(senha), usuario.senha))
+            !(await bcrypt.compare(String(senha), cliente.senha))
         ) {
             throw new Error("Email ou senha inválido")
         }
 
         return jwt.sign(
-            { id: usuario.id, email },
+            { id: cliente.id, email },
             segredo,
             { expiresIn: 60 * 60 }
         )
     }
 }
 
-export default new ServiceUsuario()
+export default new ServiceCliente()

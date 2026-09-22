@@ -19,7 +19,7 @@ export default async function authMiddleware(req, res, next) {
         next()
     } catch (error) {
         res.status(403).send({
-            message: "Usuario ou senha inválido"
+            message: "Cliente ou senha inválido"
         })
     }
 }

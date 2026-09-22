@@ -42,10 +42,6 @@ class RepositoryClientes {
         await clienteDelete.detroy()
         return clienteDelete
     }
-
-    async findByEmail(email) {
-        return usuario.findOne({ where: { email } })
-    }
 }
 
 export default new RepositoryClientes()

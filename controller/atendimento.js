@@ -1,11 +1,11 @@
-import ServiceCliente from '../service/clientes.js'
+import ServiceAtendimento from '../service/atendimento.js'
 
-class ControllerCliente {
+class ControllerAtendimento {
     async Buscar(req, res) {
         try {
             console.log(req.session)
-            const cliente = await ServiceCliente.Buscar()
-            res.status(200).send({ mensagem: cliente })
+            const atendimento = await ServiceAtendimento.Buscar()
+            res.status(200).send({ mensagem: atendimento })
         } catch (error) {
             res.status(500).send({
                 mensagem: error.message
@@ -17,9 +17,9 @@ class ControllerCliente {
         try {
             const id = req.params.id
 
-            const cliente = await ServiceCliente.Detalhe(id)
+            const atendimento = await ServiceAtendimento.Detalhe(id)
 
-            res.status(200).send({ mensagem: cliente })
+            res.status(200).send({ mensagem: atendimento })
         } catch (error) {
             res.status(500).send({
                 mensagem: error.message
@@ -31,7 +31,7 @@ class ControllerCliente {
         try {
             const { nome, email, senha } = req.body
 
-            await ServiceCliente.Criar(nome, email, senha)
+            await ServiceAtendimento.Criar(nome, email, senha)
 
             res.status(201).send({ mensagem: "Cadastrado com sucesso" })
         } catch (error) {
@@ -46,7 +46,7 @@ class ControllerCliente {
             const { nome, email, senha } = req.body
             const id = req.params.id
 
-            await ServiceCliente.Alterar(id, nome, email, senha)
+            await ServiceAtendimento.Alterar(id, nome, email, senha)
 
             res.status(201).send({ mensagem: "Cadastrado com sucesso" })
         } catch (error) {
@@ -60,7 +60,7 @@ class ControllerCliente {
         try {
             const identificador = req.params.id
 
-            await ServiceCliente.Deletar(identificador)
+            await ServiceAtendimento.Deletar(identificador)
 
             res.status(204).send({ mensagem: "Deletado" })
         } catch (error) {
@@ -75,7 +75,7 @@ class ControllerCliente {
         try {
             const { nome, email, senha } = req.body
 
-            const token = await ServiceCliente.Login(nome, email, senha)
+            const token = await ServiceAtendimento.Login(nome, email, senha)
 
             res.status(200).send({
                 token
@@ -89,4 +89,4 @@ class ControllerCliente {
     }
 }
 
-export default new ControllerCliente()
+export default new ControllerAtendimento()
