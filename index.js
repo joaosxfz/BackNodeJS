@@ -19,3 +19,6 @@ database.db
     .catch((e) => {
         console.log(e)
     })
+
+    // testou todas as rotas no postam?! - testa antes de mexer entao
+    // testa no postman depois continua o dia 2

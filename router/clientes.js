@@ -11,3 +11,7 @@ router.put("/alterar/:id", ControllerCliente.Alterar)
 router.delete("/deletar/:id", ControllerCliente.Deletar)
 
 export default router
+
+
+// travou tanto que eu esqueci o que ia te falar ,-,
+// a lembrie, a resposta depois pra esse cara aqui, vai estar no meu github na ultima branch, se te interessar (=
